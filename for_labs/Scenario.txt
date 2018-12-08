@@ -1,0 +1,5 @@
+look up value less than 50
+convert to string
+lookup custom object from string
+call function on custom object that randomly returns a string or throws
+use that string to lookup a different type than previous mapped object but in same map....?
