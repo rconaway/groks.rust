@@ -29,9 +29,8 @@ mod tests {
 
     #[test]
     fn big_fibonacci() {
-        use num::FromPrimitive;
-        use num_bigint::BigUint;
-        use num_traits::{Zero, One};
+        use num::bigint::BigUint;
+        use num::traits::{Zero, One};
         use std::mem::replace;
 
         // Calculate large fibonacci numbers.
@@ -54,7 +53,7 @@ mod tests {
 
     #[test]
     fn true_random() {
-        use num_bigint::{ToBigInt, RandBigInt, Sign, BigInt};
+        use num::bigint::{ToBigInt, RandBigInt};
 
         let mut rng = rand::thread_rng();
         let a = rng.gen_bigint(1000);
@@ -69,8 +68,9 @@ mod tests {
 
     #[test]
     fn pseudo_random() {
-        use num_bigint::{ToBigInt, RandBigInt, Sign, BigInt};
-        use rand::{Rng, SeedableRng, StdRng};
+        use num::bigint::{ToBigInt, RandBigInt, Sign, BigInt};
+        use rand::SeedableRng;
+        use rand::rngs::StdRng;
 
         let seed: [u8;32] = [0;32];
         let mut rng:StdRng = SeedableRng::from_seed(seed);
@@ -87,8 +87,9 @@ mod tests {
 
     #[test]
     fn pseudo_random_big_range() {
-        use num_bigint::{ToBigInt, RandBigInt, Sign, BigInt};
-        use rand::{Rng, SeedableRng, StdRng};
+        use num::bigint::{RandBigInt, Sign, BigInt};
+        use rand::SeedableRng;
+        use rand::rngs::StdRng;
 
         fn permutations(n:u16, r:u16) -> BigInt {
 
@@ -112,6 +113,28 @@ mod tests {
 
         let expected = BigInt::new(Sign::Minus, vec![1440]);
         assert_eq!(b, expected);
+    }
+
+    #[test]
+    fn to_and_from_str() {
+        use num::bigint::BigInt;
+        use std::str::FromStr;
+
+        let x: BigInt =  FromStr::from_str("12345").unwrap();
+
+        assert_eq!(x.to_string(), "12345");
+    }
+
+    #[test]
+    fn to_and_from_primitives() {
+        use num::bigint::BigInt;
+        use num::FromPrimitive;
+        use num::ToPrimitive;
+
+        let x: BigInt =  FromPrimitive::from_u64(42).unwrap();
+
+        assert_eq!(x.to_i64().unwrap(), 42);
+
     }
 
 

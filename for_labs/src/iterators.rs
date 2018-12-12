@@ -1,3 +1,4 @@
+#[cfg(test)]
 mod tests {
     #[test]
     fn iterate_over_hash() {

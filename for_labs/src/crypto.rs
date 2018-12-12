@@ -1,6 +1,7 @@
 // Cannot put this here - it goes in main.rs
 // #[macro_use] extern crate hex_literal;
 
+#[cfg(test)]
 mod tests {
     #[test]
     fn sha256_example() {
