@@ -9,6 +9,7 @@ array-init = "0.0.4"
 sha2 = "0.8.0"
 hex-literal = "0.1.1"
 rand = "0.6"
+macros = { path = "macros" }
 
 [dependencies.num]
 version = "0.2.0"

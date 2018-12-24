@@ -15,5 +15,8 @@ mod testing;
 mod macros;
 mod polymorphism;
 mod primitives;
+mod enums;
 
-fn main() {}
+fn main() {
+
+}

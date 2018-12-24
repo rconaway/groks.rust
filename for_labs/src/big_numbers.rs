@@ -1,3 +1,4 @@
+
 #[cfg(test)]
 mod tests {
     #[test]
@@ -47,8 +48,7 @@ mod tests {
 
         let f = fib(1000);
         let expected = BigUint::new(vec![1556111435, 190401991, 2256560071, 1284402514, 2151428395, 154187752, 1008558256, 775229480, 2751115457, 671514929, 4284660124, 1929785112, 1297430915, 3063393570, 2118306451, 1920627562, 1771810074, 2968009996, 1865167802, 1462942481, 129331906, 2218187]);
-            assert_eq!(f, expected);
-
+        assert_eq!(f, expected);
     }
 
     #[test]
@@ -72,8 +72,8 @@ mod tests {
         use rand::SeedableRng;
         use rand::rngs::StdRng;
 
-        let seed: [u8;32] = [0;32];
-        let mut rng:StdRng = SeedableRng::from_seed(seed);
+        let seed: [u8; 32] = [0; 32];
+        let mut rng: StdRng = SeedableRng::from_seed(seed);
         let a = rng.gen_bigint(1000);
 
         let low = -10000.to_bigint().unwrap();
@@ -91,11 +91,10 @@ mod tests {
         use rand::SeedableRng;
         use rand::rngs::StdRng;
 
-        fn permutations(n:u16, r:u16) -> BigInt {
-
-            fn factorial(n:u16) -> BigInt {
-                let mut f:BigInt = BigInt::from(1);
-                for x  in 1 ..= n {
+        fn permutations(n: u16, r: u16) -> BigInt {
+            fn factorial(n: u16) -> BigInt {
+                let mut f: BigInt = BigInt::from(1);
+                for x in 1..=n {
                     f *= x;
                 }
                 f
@@ -104,14 +103,14 @@ mod tests {
             factorial(n) / factorial(n - r)
         }
 
-        let seed: [u8;32] = [0;32];
+        let seed: [u8; 32] = [0; 32];
 
         let range = permutations(1024, 21);
 
-        let mut rng:StdRng = SeedableRng::from_seed(seed);
+        let mut rng: StdRng = SeedableRng::from_seed(seed);
         let b = rng.gen_bigint_range(&BigInt::from(0u8), &range);
 
-        let expected = BigInt::new(Sign::Minus, vec![1440]);
+        let expected = BigInt::new(Sign::Plus, vec![1930756226, 1006437280, 4214216575, 2858659598, 3725733830, 2816223670, 101018]);
         assert_eq!(b, expected);
     }
 
@@ -120,7 +119,7 @@ mod tests {
         use num::bigint::BigInt;
         use std::str::FromStr;
 
-        let x: BigInt =  FromStr::from_str("12345").unwrap();
+        let x: BigInt = FromStr::from_str("12345").unwrap();
 
         assert_eq!(x.to_string(), "12345");
     }
@@ -131,11 +130,8 @@ mod tests {
         use num::FromPrimitive;
         use num::ToPrimitive;
 
-        let x: BigInt =  FromPrimitive::from_u64(42).unwrap();
+        let x: BigInt = FromPrimitive::from_u64(42).unwrap();
 
         assert_eq!(x.to_i64().unwrap(), 42);
-
     }
-
-
 }
